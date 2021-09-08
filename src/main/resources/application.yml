@@ -1,0 +1,9 @@
+spring:
+  profiles:
+#    active: qa
+#    active: prod
+#    active: anonymous #上传项目的时候只上传这个配置文件来模糊掉ip地址还有密码
+    active: dev
+
+
+

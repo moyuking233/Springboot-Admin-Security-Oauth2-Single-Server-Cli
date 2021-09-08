@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nga.admin.dao.PermissionDao">
+    <sql id="Base_Column_List">
+        permission_id,permission_url,permission_name,
+        permission_parent_id,gmt_modified,gmt_modified_man,
+        gmt_create,gmt_create_man,is_deleted
+    </sql>
+    <resultMap id="BaseResultMap" type="com.nga.admin.entity.po.Permission">
+            <id property="permissionId" column="permission_id" jdbcType="INTEGER"/>
+            <result property="permissionUrl" column="permission_url" jdbcType="VARCHAR"/>
+            <result property="permissionName" column="permission_name" jdbcType="VARCHAR"/>
+            <result property="gmtModified" column="gmt_modified" jdbcType="TIMESTAMP"/>
+            <result property="gmtModifiedMan" column="gmt_modified_man" jdbcType="INTEGER"/>
+            <result property="gmtCreate" column="gmt_create" jdbcType="TIMESTAMP"/>
+            <result property="gmtCreateMan" column="gmt_create_man" jdbcType="INTEGER"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="BOOLEAN"/>
+    </resultMap>
+    <resultMap id="PermissionWithRolesResultMap" type="com.nga.admin.entity.dto.PermissionWithRolesDto" extends="BaseResultMap">
+        <collection property="roles" ofType="com.nga.admin.entity.po.Role" >
+            <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+        </collection>
+    </resultMap>
+    <select id="getAllPermissionsWithRoles" resultMap="PermissionWithRolesResultMap">
+        select
+            p.*,
+            r.role_id AS role_id,
+            r.role_name AS role_name
+        from
+            permission p,
+            role_permission rp,
+            role r
+        where
+            p.permission_id = rp.permission_id
+          and rp.role_id = r.role_id
+        ORDER BY
+            p.permission_id
+    </select>
+
+</mapper>

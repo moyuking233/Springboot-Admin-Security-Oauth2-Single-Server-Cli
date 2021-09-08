@@ -1,0 +1,76 @@
+# 端口号配置
+server:
+  port: 8080
+
+  tomcat:
+    uri-encoding: UTF-8
+    #最小线程数
+    min-spare-threads: 100
+    #最大线程数
+    max-threads: 200
+    #最大链接数
+    max-connections: 6500
+    #最大等待队列长度
+    accept-count: 1000
+    #请求头最大长度kb
+    max-http-header-size: 1048576
+
+# 日志配置
+logging:
+  level:
+    org:
+      springframework: DEBUG
+    com:
+      msun:
+          stushelter: DEBUG
+
+spring:
+
+  ## 应用名配置
+  application:
+    name: XX-ADMIN
+  redis:
+    database: 1
+    host: 127.0.0.1
+    port: 9526
+    password: 123456
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+  ## 数据库名
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:9527/xxx?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8  # &autoReconnect=true&failOverReadOnly=false
+    username: test
+    password: 123456
+
+
+
+## mybatis配置
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  type-aliases-package: com.xxx.admin.entity.*.*
+
+## swagger配置
+swagger:
+  title: 'localhost项目管理端 API文档'
+  description: '本文档描述了 localhost项目管理端 接口定义'
+  version: 'v1.0'
+  termsOfServiceUrl: ''
+  contact:
+    name: '陈定恒'
+    url: 'https://github.com/moyuking233'
+    email: 'm13411907763@163.com'
+  license: 'Apache 2.0' #执照
+  licenseUrl: 'http://www.apache.org/licenses/LICENSE-2.0'
+
+## 安全加密配置 被注释的是oauth token登录的属性
+security:
+  salt: 'localhost@key' #这里一般写键值对
+#  clientSecret: '123'
+#  clientId: 'browser'
+#  grantType: 'password'
+

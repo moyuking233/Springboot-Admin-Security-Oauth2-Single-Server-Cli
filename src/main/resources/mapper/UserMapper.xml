@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nga.admin.dao.UserDao">
+
+    <resultMap id="BaseResultMap" type="com.nga.admin.entity.po.User">
+            <id property="userId" column="user_id" jdbcType="BIGINT"/>
+            <result property="userUsername" column="user_username" jdbcType="VARCHAR"/>
+            <result property="userPassword" column="user_password" jdbcType="VARCHAR"/>
+            <result property="isCredentialsExpired" column="is_credentials_expired" jdbcType="BOOLEAN"/>
+            <result property="isExpired" column="is_expired" jdbcType="BOOLEAN"/>
+            <result property="isLocked" column="is_locked" jdbcType="BOOLEAN"/>
+            <result property="gmtLastLogin" column="gmt_last_login" jdbcType="TIMESTAMP"/>
+            <result property="gmtModified" column="gmt_modified" jdbcType="TIMESTAMP"/>
+            <result property="gmtModifiedMan" column="gmt_modified_man" jdbcType="INTEGER"/>
+            <result property="gmtCreate" column="gmt_create" jdbcType="TIMESTAMP"/>
+            <result property="gmtCreateMan" column="gmt_create_man" jdbcType="INTEGER"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="BOOLEAN"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        user_id,user_username,user_password,
+        is_credentials_expired,is_expired,is_locked,
+        gmt_last_login,gmt_modified,gmt_modified_man,
+        gmt_create,gmt_create_man,is_deleted
+    </sql>
+</mapper>
